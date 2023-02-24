@@ -17,6 +17,8 @@
   --red: rgb(208, 77, 77);
 }
 
+/* MAIN */
+
 body {
 background-color: var(--color2);
 width: 100vw;
@@ -39,21 +41,26 @@ h1 {
 
 }
 
+/* ADD BLOG FORM */
+
 .blog-form {
   position: absolute;
   top: 50%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  width: clamp(300px, 80vw, 500px);
-  height: clamp(200px, 50vh, 500px);
+
+  width: clamp(100px, 80vw, 400px);
+  height: clamp(100px, 40vh, 400px);
+
   background-color: var(--color5);
   box-shadow: 0 0 15px var(--color3);
   border-radius: 20px;
   padding: 3vmin;
   flex-direction: column;
-  align-content: space-around;
-  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  gap: 3%;
 }
 
 .show-add {
@@ -63,6 +70,40 @@ h1 {
 .hide-add {
   display: none;
 }
+
+/* .input-div {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+} */
+
+input {
+  background-color: var(--color2);
+  color: var(--color6);
+  padding: 2vmin;
+  font-size: clamp(15px, 3vmin, 18px);
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  width: clamp(100px, 100%, 600px);
+  height: clamp(30px, 100%, 50px);
+}
+
+input:hover {
+  transform: scale(1.05);
+}
+
+input:active, input:focus {
+  box-shadow: 0 0 15px var(--color2);
+}
+
+label {
+  font-size: 23px;
+}
+
+/* BLOGS */
 
 .render-blogs {
   display: grid;

@@ -12,30 +12,34 @@ const RenderBlogs = ({ blogs }) => {
   )
 }
 
-const BlogForm = ({ addBlog, newTitle, newAuthor, newURL, newLikes, handleTitleChange, handleAuthorChange, handleURLChange, handleLikesChange, setAdd, handleAddChange }) => {
+const BlogForm = ({ addBlog, newTitle, newAuthor, newURL, newLikes, handleTitleChange, handleAuthorChange, handleURLChange, handleLikesChange, handleAddChange }) => {
   return (
-    <form className='blog-form show-add' onSubmit={addBlog}>
-      <div>
-        Title: <input 
+    <form className='blog-form hide-add' onSubmit={addBlog}>
+      <div className='input-div'>
+        <input 
             value={newTitle} 
+            placeholder={'Title'}
             onChange={handleTitleChange} 
           />
       </div>
-      <div>
-        Author: <input 
+      <div className='input-div'>
+        <input 
             value={newAuthor} 
+            placeholder={'Author'}
             onChange={handleAuthorChange}
           />
       </div>
-      <div>
-        URL: <input 
+      <div className='input-div'>
+        <input 
             value={newURL} 
+            placeholder={'URL'}
             onChange={handleURLChange} 
           />
       </div>
-      <div>
-        Likes: <input 
+      <div className='input-div'>
+        <input 
             value={newLikes} 
+            placeholder={'Likes'}
             onChange={handleLikesChange}
           />
       </div>
@@ -60,7 +64,7 @@ const App = () => {
   const [newAuthor, setAuthor] = useState('')
   const [newURL, setURL] = useState('')
   const [newLikes, setLikes] = useState()
-  const [add, setAdd] = useState(false)
+  const [add, setAdd] = useState(true)
 
   useEffect(() => {
     requests
@@ -127,7 +131,7 @@ const App = () => {
       <h1>BLOGS LIST</h1>
       <div className='new-blog'>
         <button onClick={() => handleAddChange()}>+ New blog</button>
-        <BlogForm addBlog={addBlog} newTitle={newTitle} newAuthor={newAuthor} newURL={newURL} newLikes={newLikes} handleTitleChange={handleTitleChange} handleAuthorChange={handleAuthorChange} handleURLChange={handleURLChange} handleLikesChange={handleLikesChange} setAdd={setAdd} handleAddChange={handleAddChange} />
+        <BlogForm addBlog={addBlog} newTitle={newTitle} newAuthor={newAuthor} newURL={newURL} newLikes={newLikes} handleTitleChange={handleTitleChange} handleAuthorChange={handleAuthorChange} handleURLChange={handleURLChange} handleLikesChange={handleLikesChange} handleAddChange={handleAddChange} />
       </div>
       <div className='render-blogs'>
         <RenderBlogs blogs={blogs} />
