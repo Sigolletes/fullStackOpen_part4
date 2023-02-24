@@ -7,46 +7,40 @@ const RenderBlogs = ({ blogs }) => {
       <h3>{blog.title}</h3>
       <p>{blog.author}</p>
       <p>{blog.likes} likes</p>
-      <a target="_blank" href={blog.URL}>GO</a>
+      <div className='link-div'>
+        <a target="_blank" href={blog.URL} rel="noreferrer">GO</a>
+      </div>
     </div>
   )
 }
 
 const BlogForm = ({ addBlog, newTitle, newAuthor, newURL, newLikes, handleTitleChange, handleAuthorChange, handleURLChange, handleLikesChange, handleAddChange }) => {
   return (
-    <form className='blog-form hide-add' onSubmit={addBlog}>
-      <div className='input-div'>
-        <input 
-            value={newTitle} 
-            placeholder={'Title'}
-            onChange={handleTitleChange} 
-          />
-      </div>
-      <div className='input-div'>
-        <input 
-            value={newAuthor} 
-            placeholder={'Author'}
-            onChange={handleAuthorChange}
-          />
-      </div>
-      <div className='input-div'>
-        <input 
-            value={newURL} 
-            placeholder={'URL'}
-            onChange={handleURLChange} 
-          />
-      </div>
-      <div className='input-div'>
-        <input 
-            value={newLikes} 
-            placeholder={'Likes'}
-            onChange={handleLikesChange}
-          />
-      </div>
-      <div>
-        <button type="submit">Add</button>
-        <button onClick={() => handleAddChange()} type="button">Return</button>
-      </div>
+    <form className='blog-form hide-add' onSubmit={addBlog}>    
+      <input 
+          value={newTitle} 
+          placeholder={'Title'}
+          onChange={handleTitleChange} 
+        />
+      <input 
+          value={newAuthor} 
+          placeholder={'Author'}
+          onChange={handleAuthorChange}
+        />
+      <input 
+          value={newURL} 
+          placeholder={'URL'}
+          onChange={handleURLChange} 
+        />
+      <input 
+          value={newLikes} 
+          placeholder={'Likes'}
+          onChange={handleLikesChange}
+      />
+      <div className='buttons-div'>
+        <button className='submit' type="submit">Add</button>
+        <button className='return' onClick={() => handleAddChange()} type="button">Return</button> 
+      </div> 
     </form>
   )
 }
@@ -130,7 +124,7 @@ const App = () => {
     <div className='container'>
       <h1>BLOGS LIST</h1>
       <div className='new-blog'>
-        <button onClick={() => handleAddChange()}>+ New blog</button>
+        <button className='button-new' onClick={() => handleAddChange()}>+ Add</button>
         <BlogForm addBlog={addBlog} newTitle={newTitle} newAuthor={newAuthor} newURL={newURL} newLikes={newLikes} handleTitleChange={handleTitleChange} handleAuthorChange={handleAuthorChange} handleURLChange={handleURLChange} handleLikesChange={handleLikesChange} handleAddChange={handleAddChange} />
       </div>
       <div className='render-blogs'>
