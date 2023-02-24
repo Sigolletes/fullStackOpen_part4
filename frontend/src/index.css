@@ -19,4 +19,39 @@
 
 body {
 background-color: var(--color2);
+width: 100vw;
+height: 100vh;
+text-align: center;
+padding: 5vmin;
+
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 50px 150px 1fr;
+}
+
+h1 {
+
+}
+
+.new-blog {
+
+}
+
+.render-blogs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 3vmin;
+  padding: 3vmin;
+/*   overflow-y: auto; */
+}
+
+.blog-container {
+  background-color: var(--color1);
+  width: 100%;
+  height: 100%;
+  white-space: initial;
+  overflow: hidden;
 }

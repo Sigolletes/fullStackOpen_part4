@@ -3,11 +3,11 @@ import requests from './services/requests'
 
 const RenderBlogs = ({ blogs }) => {
   return blogs.map(blog =>
-    <div key={blog.id}>
+    <div className='blog-container' key={blog.id}>
       <h3>{blog.title}</h3>
       <p>{blog.author}</p>
-      <p>{blog.URL}</p>
-      <p>{blog.likes}</p>
+      <p>{blog.likes} likes</p>
+      <a target="_blank" href={blog.URL}>GO</a>
     </div>
   )
 }
@@ -41,6 +41,7 @@ const BlogForm = ({ addBlog, newTitle, newAuthor, newURL, newLikes, handleTitleC
       </div>
       <div>
         <button type="submit">Add</button>
+        <button onClick={() => setAdd(false)} type="button">Return</button>
       </div>
     </form>
   )
@@ -53,12 +54,13 @@ const App = () => {
     { title: 'title 3', author: 'Author 3', URL: 'blog3.com', likes: 300, id: '2' },
     { title: 'title 4', author: 'Author 4', URL: 'blog4.com', likes: 400, id: '3' },
     { title: 'title 5', author: 'Author 5', URL: 'blog5.com', likes: 500, id: '4' },
-    { title: 'title 6: a very long title for testing the frontend', author: 'Author 6: a long name with a long surname', URL: 'blog6.longurlthatismorecommonand thiswayicanmakeenoughplaceinthefrontendfortheverylongurlsoftheblogsandthewebsthatcanenduphereinoneofthisjavascriptobjects.com', likes: 6000000, id: '5' },
+    { title: 'title 6: a very long title for testing the frontend', author: 'Author 6: a long name with a long surname', URL: 'https://github.com/Sigolletes', likes: 6000000, id: '5' },
   ]) 
   const [newTitle, setTitle] = useState('')
   const [newAuthor, setAuthor] = useState('')
   const [newURL, setURL] = useState('')
   const [newLikes, setLikes] = useState()
+  const [add, setAdd] = useState(false)
 
   useEffect(() => {
     requests
@@ -108,13 +110,13 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className='container'>
       <h1>BLOGS LIST</h1>
-      <div>
-        <h2>+ New blog</h2>
+      <div className='new-blog'>
+        <button onClick={() => setAdd(true)}>+ New blog</button>
         <BlogForm addBlog={addBlog} newTitle={newTitle} newAuthor={newAuthor} newURL={newURL} newLikes={newLikes} handleTitleChange={handleTitleChange} handleAuthorChange={handleAuthorChange} handleURLChange={handleURLChange} handleLikesChange={handleLikesChange} />
       </div>
-      <div>
+      <div className='render-blogs'>
         <RenderBlogs blogs={blogs} />
       </div>
     </div>
