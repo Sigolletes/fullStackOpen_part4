@@ -12,9 +12,9 @@ const RenderBlogs = ({ blogs }) => {
   )
 }
 
-const BlogForm = ({ addBlog, newTitle, newAuthor, newURL, newLikes, handleTitleChange, handleAuthorChange, handleURLChange, handleLikesChange }) => {
+const BlogForm = ({ addBlog, newTitle, newAuthor, newURL, newLikes, handleTitleChange, handleAuthorChange, handleURLChange, handleLikesChange, setAdd, handleAddChange }) => {
   return (
-    <form onSubmit={addBlog}>
+    <form className='blog-form show-add' onSubmit={addBlog}>
       <div>
         Title: <input 
             value={newTitle} 
@@ -41,7 +41,7 @@ const BlogForm = ({ addBlog, newTitle, newAuthor, newURL, newLikes, handleTitleC
       </div>
       <div>
         <button type="submit">Add</button>
-        <button onClick={() => setAdd(false)} type="button">Return</button>
+        <button onClick={() => handleAddChange()} type="button">Return</button>
       </div>
     </form>
   )
@@ -93,6 +93,19 @@ const App = () => {
       })
   }
 
+  const handleAddChange = (event) => {
+    let blogForm = document.querySelector('.blog-form')
+    if (add) {
+      blogForm.classList.remove('hide-add')
+      blogForm.classList.add('show-add')
+      setAdd(false)
+    } else {
+      blogForm.classList.remove('show-add')
+      blogForm.classList.add('hide-add')
+      setAdd(true)
+    }
+  }
+
   const handleTitleChange = (event) => {
     setTitle(event.target.value)
   }
@@ -113,8 +126,8 @@ const App = () => {
     <div className='container'>
       <h1>BLOGS LIST</h1>
       <div className='new-blog'>
-        <button onClick={() => setAdd(true)}>+ New blog</button>
-        <BlogForm addBlog={addBlog} newTitle={newTitle} newAuthor={newAuthor} newURL={newURL} newLikes={newLikes} handleTitleChange={handleTitleChange} handleAuthorChange={handleAuthorChange} handleURLChange={handleURLChange} handleLikesChange={handleLikesChange} />
+        <button onClick={() => handleAddChange()}>+ New blog</button>
+        <BlogForm addBlog={addBlog} newTitle={newTitle} newAuthor={newAuthor} newURL={newURL} newLikes={newLikes} handleTitleChange={handleTitleChange} handleAuthorChange={handleAuthorChange} handleURLChange={handleURLChange} handleLikesChange={handleLikesChange} setAdd={setAdd} handleAddChange={handleAddChange} />
       </div>
       <div className='render-blogs'>
         <RenderBlogs blogs={blogs} />

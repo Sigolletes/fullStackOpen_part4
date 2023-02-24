@@ -39,6 +39,31 @@ h1 {
 
 }
 
+.blog-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  width: clamp(300px, 80vw, 500px);
+  height: clamp(200px, 50vh, 500px);
+  background-color: var(--color5);
+  box-shadow: 0 0 15px var(--color3);
+  border-radius: 20px;
+  padding: 3vmin;
+  flex-direction: column;
+  align-content: space-around;
+  justify-items: center;
+}
+
+.show-add {
+  display: flex;
+}
+
+.hide-add {
+  display: none;
+}
+
 .render-blogs {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
