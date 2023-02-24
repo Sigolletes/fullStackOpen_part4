@@ -6,7 +6,7 @@ const RenderBlogs = ({ blogs }) => {
     <div key={blog.id}>
       <h3>{blog.title}</h3>
       <p>{blog.author}</p>
-      <p>{blog.url}</p>
+      <p>{blog.URL}</p>
       <p>{blog.likes}</p>
     </div>
   )
@@ -47,7 +47,14 @@ const BlogForm = ({ addBlog, newTitle, newAuthor, newURL, newLikes, handleTitleC
 }
 
 const App = () => {
-  const [blogs, setBlogs] = useState([]) 
+  const [blogs, setBlogs] = useState([
+    { title: 'title 1', author: 'Author 1', URL: 'blog1.com', likes: 100 },
+    { title: 'title 2', author: 'Author 2', URL: 'blog2.com', likes: 200 },
+    { title: 'title 3', author: 'Author 3', URL: 'blog3.com', likes: 300 },
+    { title: 'title 4', author: 'Author 4', URL: 'blog4.com', likes: 400 },
+    { title: 'title 5', author: 'Author 5', URL: 'blog5.com', likes: 500 },
+    { title: 'title 6: a very long title for testing the frontend', author: 'Author 6: a long name with a long surname', URL: 'blog6.longurlthatismorecommonand thiswayicanmakeenoughplaceinthefrontendfortheverylongurlsoftheblogsandthewebsthatcanenduphereinoneofthisjavascriptobjects.com', likes: 6000000 },
+  ]) 
   const [newTitle, setTitle] = useState('')
   const [newAuthor, setAuthor] = useState('')
   const [newURL, setURL] = useState('')
