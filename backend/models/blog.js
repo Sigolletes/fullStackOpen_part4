@@ -8,12 +8,16 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 2,
+    maxlength: 30,
   },
-  author: String,
+  author: {
+    type: String,
+    maxlength: 30,
+  },
   URL: {
     type: String,
     required: true,
-    minlength: 6,
+    minlength: 5,
   },
   likes: Number,
 });
