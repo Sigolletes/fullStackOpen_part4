@@ -1,6 +1,18 @@
 import { useState, useEffect } from 'react'
 import requests from './services/requests'
 
+const Error = ({ message, alert }) => {
+  if (message === null) {
+    return null
+  } else if (alert) {
+    return (
+      <div className='alert'>
+        {message}
+      </div>
+    )
+  }
+}
+
 const RenderBlogs = ({ blogs }) => {
   return blogs.map(blog =>
     <div className='blog-container' key={blog.id}>
@@ -14,7 +26,7 @@ const RenderBlogs = ({ blogs }) => {
   )
 }
 
-const BlogForm = ({ addBlog, newTitle, newAuthor, newURL, newLikes, handleTitleChange, handleAuthorChange, handleURLChange, handleLikesChange, handleAddChange }) => {
+const BlogForm = ({ addBlog, newTitle, newAuthor, newURL, newLikes, handleTitleChange, handleAuthorChange, handleURLChange, handleLikesChange, handleAddChange, message, alert }) => {
   return (
     <form className='blog-form hide-add' onSubmit={addBlog}>    
       <input 
@@ -41,6 +53,7 @@ const BlogForm = ({ addBlog, newTitle, newAuthor, newURL, newLikes, handleTitleC
         <button className='submit' type="submit">Add</button>
         <button className='return' onClick={() => handleAddChange()} type="button">Return</button> 
       </div> 
+      <Error message={message} alert={alert} />
     </form>
   )
 }
@@ -59,6 +72,8 @@ const App = () => {
   const [newURL, setURL] = useState('')
   const [newLikes, setLikes] = useState()
   const [add, setAdd] = useState(true)
+  const [message, setMessage] = useState(null)
+  const [alert, setAlert] = useState(false)
 
   useEffect(() => {
     requests
@@ -85,9 +100,18 @@ const App = () => {
         setAuthor('')
         setURL('')
         setLikes()
+        handleAddChange()
       })
       .catch(error => {
         console.log(error)
+        setAlert(true)
+          setMessage(
+            `Error: ${error.response.data.error}`
+          )
+          setTimeout(() => {
+            setMessage(null)
+            setAlert(false)
+          }, 5000)
       })
   }
 
@@ -100,6 +124,12 @@ const App = () => {
     } else {
       blogForm.classList.remove('show-add')
       blogForm.classList.add('hide-add')
+      setTitle('')
+      setAuthor('')
+      setURL('')
+      setLikes('')
+      setMessage(null)
+      setAlert(false)
       setAdd(true)
     }
   }
@@ -125,7 +155,7 @@ const App = () => {
       <h1>BLOGS LIST</h1>
       <div>
         <button className='button-new' onClick={() => handleAddChange()}>+ Add</button>
-        <BlogForm addBlog={addBlog} newTitle={newTitle} newAuthor={newAuthor} newURL={newURL} newLikes={newLikes} handleTitleChange={handleTitleChange} handleAuthorChange={handleAuthorChange} handleURLChange={handleURLChange} handleLikesChange={handleLikesChange} handleAddChange={handleAddChange} />
+        <BlogForm addBlog={addBlog} newTitle={newTitle} newAuthor={newAuthor} newURL={newURL} newLikes={newLikes} handleTitleChange={handleTitleChange} handleAuthorChange={handleAuthorChange} handleURLChange={handleURLChange} handleLikesChange={handleLikesChange} handleAddChange={handleAddChange} message={message} alert={alert} />
       </div>
       <div className='render-blogs'>
         <RenderBlogs blogs={blogs} />
