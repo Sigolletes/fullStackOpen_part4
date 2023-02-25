@@ -5,8 +5,8 @@ const RenderBlogs = ({ blogs }) => {
   return blogs.map(blog =>
     <div className='blog-container' key={blog.id}>
       <h3>{blog.title}</h3>
-      <p>{blog.author}</p>
-      <p>{blog.likes} likes</p>
+      <p><em>{blog.author}</em></p>
+      <h5>{blog.likes} likes</h5>
       <div className='link-div'>
         <a target="_blank" href={blog.URL} rel="noreferrer">GO</a>
       </div>
@@ -123,7 +123,7 @@ const App = () => {
   return (
     <div className='container'>
       <h1>BLOGS LIST</h1>
-      <div className='new-blog'>
+      <div>
         <button className='button-new' onClick={() => handleAddChange()}>+ Add</button>
         <BlogForm addBlog={addBlog} newTitle={newTitle} newAuthor={newAuthor} newURL={newURL} newLikes={newLikes} handleTitleChange={handleTitleChange} handleAuthorChange={handleAuthorChange} handleURLChange={handleURLChange} handleLikesChange={handleLikesChange} handleAddChange={handleAddChange} />
       </div>
