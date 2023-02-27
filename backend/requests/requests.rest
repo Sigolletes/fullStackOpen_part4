@@ -10,18 +10,3 @@ Content-Type: application/json
   "URL": "blogtest.com",
   "likes": 10050
 }
-
-
-// RENDER TESTS
-
-###
-GET https://part3-2.onrender.com/api/blogs
-
-###
-POST https://part3-2.onrender.com/
-Content-Type: application/json
-
-{
-  "name": "Rest API test for Render 3",
-  "number": "672"
-}
