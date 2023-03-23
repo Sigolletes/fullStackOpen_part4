@@ -22,8 +22,52 @@ const favoriteBlog = (list) => {
   return subset;
 };
 
+const mostBlogs = (list) => {
+  const count = {};
+
+  list.forEach((blog) => {
+    if (blog.author in count) {
+      count[blog.author] += 1;
+    } else {
+      count[blog.author] = 1;
+    }
+  });
+
+  const bigger = Object.keys(count).reduce((a, b) => (count[a] > count[b] ? a : b));
+
+  const final = {
+    author: bigger,
+    blogs: count[bigger],
+  };
+
+  return final;
+};
+
+const mostLikes = (list) => {
+  const count = {};
+
+  list.forEach((blog) => {
+    if (blog.author in count) {
+      count[blog.author] += blog.likes;
+    } else {
+      count[blog.author] = blog.likes;
+    }
+  });
+
+  const bigger = Object.keys(count).reduce((a, b) => (count[a] > count[b] ? a : b));
+
+  const final = {
+    author: bigger,
+    likes: count[bigger],
+  };
+
+  return final;
+};
+
 module.exports = {
   dummy,
   totalLikes,
   favoriteBlog,
+  mostBlogs,
+  mostLikes,
 };

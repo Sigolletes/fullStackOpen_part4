@@ -97,3 +97,95 @@ describe('favorite blog', () => {
     expect(listHelper.favoriteBlog(list)).toEqual(expected);
   });
 });
+
+describe('most blogs', () => {
+  test('returns the author with more blogs', () => {
+    const list = [
+      {
+        _id: '1',
+        title: 'First',
+        author: 'Author 1',
+        url: 'first.blog',
+        likes: 5,
+        __v: 0,
+      },
+      {
+        _id: '2',
+        title: 'Second',
+        author: 'Author 2',
+        url: 'second.blog',
+        likes: 10,
+        __v: 0,
+      },
+      {
+        _id: '3',
+        title: 'Third',
+        author: 'Author 3',
+        url: 'third.blog',
+        likes: 15,
+        __v: 0,
+      },
+      {
+        _id: '4',
+        title: 'Forth',
+        author: 'Author 3',
+        url: 'forth.blog',
+        likes: 20,
+        __v: 0,
+      },
+    ];
+
+    const expected = {
+      author: 'Author 3',
+      blogs: 2,
+    };
+
+    expect(listHelper.mostBlogs(list)).toEqual(expected);
+  });
+});
+
+describe('most likes', () => {
+  test('returns the author with more likes', () => {
+    const list = [
+      {
+        _id: '1',
+        title: 'First',
+        author: 'Author 1',
+        url: 'first.blog',
+        likes: 5,
+        __v: 0,
+      },
+      {
+        _id: '2',
+        title: 'Second',
+        author: 'Author 2',
+        url: 'second.blog',
+        likes: 10,
+        __v: 0,
+      },
+      {
+        _id: '3',
+        title: 'Third',
+        author: 'Author 3',
+        url: 'third.blog',
+        likes: 15,
+        __v: 0,
+      },
+      {
+        _id: '4',
+        title: 'Forth',
+        author: 'Author 3',
+        url: 'forth.blog',
+        likes: 20,
+        __v: 0,
+      },
+    ];
+
+    const expected = {
+      author: 'Author 3',
+      likes: 35,
+    };
+
+    expect(listHelper.mostLikes(list)).toEqual(expected);
+  });
+});
